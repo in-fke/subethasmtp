@@ -11,8 +11,6 @@ import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.concurrent.GuardedBy;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -40,7 +38,6 @@ public final class ServerThread extends Thread
 	/**
 	 * The list of currently running sessions.
 	 */
-	@GuardedBy("this")
 	private final Set<Session> sessionThreads;
 	/**
 	 * A flag which indicates that this SMTP port and all of its open
