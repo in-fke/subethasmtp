@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import javax.annotation.concurrent.GuardedBy;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocket;
@@ -144,7 +143,6 @@ public final class SMTPServer implements SSLSocketCreator {
     // mutable state
 
     /** The thread listening on the server socket. */
-    @GuardedBy("this")
     private ServerThread serverThread;
 
     private final Function<SMTPServer, String> serverThreadName;
@@ -155,7 +153,6 @@ public final class SMTPServer implements SSLSocketCreator {
      * it was shutdown properly, it cannot be restarted, because the contained
      * thread pool object itself cannot be restarted.
      **/
-    @GuardedBy("this")
     private boolean started = false;
 
     private volatile int allocatedPort;

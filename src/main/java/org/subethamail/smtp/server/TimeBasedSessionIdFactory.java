@@ -2,17 +2,12 @@ package org.subethamail.smtp.server;
 
 import java.util.Locale;
 
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.ThreadSafe;
-
 /**
  * TimeBasedSessionIdFactory is a very simple {@link SessionIdFactory}, which
  * assigns numeric identifiers based on the current milliseconds time, amending
  * it as necessary to make it unique.
  */
-@ThreadSafe
 public final class TimeBasedSessionIdFactory implements SessionIdFactory {
-	@GuardedBy("this")
 	private long lastAllocatedId = 0;
 
 	@Override
